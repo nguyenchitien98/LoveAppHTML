@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Love App</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      font-family: sans-serif;
+    }
+    #main, #final {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+    #main.active {
+      display: flex;
+    }
+    #final.active {
+      display: flex;
+    }
+    .gif {
+      max-height: 300px;
+    }
+    .btn {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      position: relative;
+    }
+    #no {
+      position: absolute;
+    }
+    #closeBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 16px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="main" class="active">
+    <img src="assets/hearts.gif" class="gif" />
+    <h2>Em yêu anh không? 💖</h2>
+    <button id="yes" class="btn">Yes</button>
+    <button id="no" class="btn">No</button>
+  </div>
+  <div id="final">
+    <img src="assets/love-meme.gif" class="gif" />
+    <button id="closeBtn">Đóng</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('no');
+    const yesBtn = document.getElementById('yes');
+    const mainDiv = document.getElementById('main');
+    const finalDiv = document.getElementById('final');
+    const closeBtn = document.getElementById('closeBtn');
+
+    noBtn.addEventListener('mouseover', () => {
+      const i = Math.floor(Math.random() * (window.innerWidth - 100));
+      const j = Math.floor(Math.random() * (window.innerHeight - 50));
+      noBtn.style.left = `${i}px`;
+      noBtn.style.top = `${j}px`;
+    });
+
+    yesBtn.addEventListener('click', () => {
+      mainDiv.classList.remove('active');
+      finalDiv.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      window.close();
+    });
+
+    // Block F12, ESC, etc.
+    document.addEventListener('keydown', function(e) {
+      if (
+        ["F12", "Escape", "F11", "I", "J", "U", "C", "W"].includes(e.key.toUpperCase()) ||
+        (e.ctrlKey && ["I", "J", "U", "C", "W"].includes(e.key.toUpperCase()))
+      ) {
+        e.preventDefault();
+        alert("Không được bấm lung tung nha 😜");
+      }
+    });
+
+    window.oncontextmenu = function () {
+      return false;
+    };
+  </script>
+</body>
+</html>
